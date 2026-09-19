@@ -1,118 +1,294 @@
+/* =====================================================
+   PERSONAL DETAILS
+===================================================== */
 
-/* =========================================
-   INTRO 3 → 2 → 1
-========================================= */
+// CHANGE THESE DETAILS
+
+const birthdayName = "Priya";
+
+const senderName = "Vishal";
+
+// Birthday date
+// 17 September 2005
+
+const birthdayDay = 17;
+const birthdayMonth = 8; // September = 8 in JavaScript
+
+
+/* =====================================================
+   COUNTDOWN 3 → 2 → 1
+===================================================== */
 
 const intro = document.getElementById("intro");
-const introNumber = document.getElementById("introNumber");
-const mainContent = document.getElementById("mainContent");
 
-let number = 3;
+const website = document.getElementById("website");
 
-const introTimer = setInterval(() => {
+const countNumber =
+    document.getElementById("countNumber");
 
-    number--;
+const countText =
+    document.getElementById("countText");
 
-    if (number > 0) {
+let count = 3;
 
-        introNumber.textContent = number;
 
-        introNumber.style.transform = "scale(1.2)";
+function startIntroCountdown() {
 
-        setTimeout(() => {
-            introNumber.style.transform = "scale(1)";
-        }, 180);
+    countNumber.textContent = count;
+
+    if (count === 3) {
+        countText.textContent = "Get Ready! 🎁";
+    }
+
+    if (count === 2) {
+        countText.textContent = "Something Beautiful... ✨";
+    }
+
+    if (count === 1) {
+        countText.textContent = "For Someone Special ❤️";
+    }
+
+    countNumber.style.animation = "none";
+
+    void countNumber.offsetWidth;
+
+    countNumber.style.animation =
+        "numberPop .9s ease";
+
+    count--;
+
+    if (count >= 0) {
+
+        setTimeout(
+            startIntroCountdown,
+            1000
+        );
 
     } else {
 
-        clearInterval(introTimer);
-
-        introNumber.textContent = "❤️";
-
         setTimeout(() => {
 
-            intro.classList.add("fade-out");
+            intro.style.display = "none";
 
-            setTimeout(() => {
+            website.style.display = "block";
 
-                intro.style.display = "none";
+            typeName();
 
-                mainContent.classList.remove("hidden");
+            createParticles();
 
-                typeName();
-
-                createCelebration();
-
-            }, 900);
-
-        }, 700);
-
+        }, 500);
     }
+}
 
-}, 1000);
+startIntroCountdown();
 
 
-/* =========================================
-   NAME TYPING
-========================================= */
+/* =====================================================
+   NAME TYPING ANIMATION
+===================================================== */
 
-const personName = "Saipallavi";
+const typingName =
+    document.getElementById("typingName");
 
-const typedName = document.getElementById("typedName");
-const finalName = document.getElementById("finalName");
+const finalName =
+    document.getElementById("finalName");
+
+let nameIndex = 0;
+
 
 function typeName() {
 
-    let index = 0;
+    if (nameIndex < birthdayName.length) {
 
-    const typing = setInterval(() => {
+        typingName.textContent +=
+            birthdayName.charAt(nameIndex);
 
-        typedName.textContent =
-            personName.substring(0, index + 1);
+        nameIndex++;
 
-        index++;
+        setTimeout(
+            typeName,
+            150
+        );
 
-        if (index === personName.length) {
+    } else {
 
-            clearInterval(typing);
+        typingName.innerHTML =
+            birthdayName + " ❤️";
 
-        }
-
-    }, 150);
-
-    finalName.textContent = personName;
+        finalName.textContent =
+            birthdayName + " ❤️";
+    }
 }
 
 
-/* =========================================
-   SMOOTH START BUTTON
-========================================= */
+/* =====================================================
+   PARTICLES
+===================================================== */
 
-document.getElementById("startButton")
-    .addEventListener("click", () => {
+function createParticles() {
 
-        document.getElementById("message")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
+    const container =
+        document.getElementById("particles");
 
-    });
+    for (let i = 0; i < 70; i++) {
+
+        const particle =
+            document.createElement("div");
+
+        particle.className =
+            "particle";
+
+        particle.style.left =
+            Math.random() * 100 + "vw";
+
+        particle.style.animationDuration =
+            (5 + Math.random() * 10) + "s";
+
+        particle.style.animationDelay =
+            Math.random() * 8 + "s";
+
+        const size =
+            2 + Math.random() * 5;
+
+        particle.style.width =
+            size + "px";
+
+        particle.style.height =
+            size + "px";
+
+        container.appendChild(particle);
+    }
+}
 
 
-/* =========================================
+/* =====================================================
+   MUSIC
+===================================================== */
+
+const music =
+    document.getElementById("music");
+
+const musicText =
+    document.getElementById("musicText");
+
+
+function toggleMusic() {
+
+    if (music.paused) {
+
+        music.play();
+
+        musicText.textContent =
+            "Pause Music";
+
+    } else {
+
+        music.pause();
+
+        musicText.textContent =
+            "Play Music";
+    }
+}
+
+
+/* =====================================================
+   CELEBRATION
+===================================================== */
+
+function startCelebration() {
+
+    createConfetti();
+
+    music.play()
+        .then(() => {
+
+            musicText.textContent =
+                "Pause Music";
+
+        })
+        .catch(() => {});
+
+
+    document
+        .querySelector(".birthday-countdown")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+function createConfetti() {
+
+    const container =
+        document.getElementById("confetti");
+
+    const shapes = [
+        "🎉",
+        "🎊",
+        "✨",
+        "💖",
+        "💕",
+        "⭐",
+        "🎈"
+    ];
+
+    for (let i = 0; i < 130; i++) {
+
+        const piece =
+            document.createElement("div");
+
+        piece.className =
+            "confetti";
+
+        piece.textContent =
+            shapes[
+                Math.floor(
+                    Math.random() *
+                    shapes.length
+                )
+            ];
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.fontSize =
+            (10 + Math.random() * 20) + "px";
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+        piece.style.animationDelay =
+            Math.random() * 1.5 + "s";
+
+        container.appendChild(piece);
+
+        setTimeout(() => {
+
+            piece.remove();
+
+        }, 6000);
+    }
+}
+
+
+/* =====================================================
    BIRTHDAY COUNTDOWN
-========================================= */
+===================================================== */
 
-const birthdayMonth = 5; // May = 5
-const birthdayDay = 9;
-
-function updateCountdown() {
+function getNextBirthday() {
 
     const now = new Date();
 
+    let year =
+        now.getFullYear();
+
     let birthday =
         new Date(
-            now.getFullYear(),
+            year,
             birthdayMonth,
             birthdayDay,
             0,
@@ -120,22 +296,55 @@ function updateCountdown() {
             0
         );
 
-    if (now > birthday) {
+    // If birthday has already passed,
+    // calculate next year's birthday.
+
+    if (birthday <= now) {
 
         birthday =
             new Date(
-                now.getFullYear() + 1,
+                year + 1,
                 birthdayMonth,
                 birthdayDay,
                 0,
                 0,
                 0
             );
-
     }
 
+    return birthday;
+}
+
+
+function updateCountdown() {
+
+    const now =
+        new Date();
+
+    const birthday =
+        getNextBirthday();
+
     const difference =
-        birthday.getTime() - now.getTime();
+        birthday - now;
+
+
+    if (difference <= 0) {
+
+        document.getElementById("days")
+            .textContent = "00";
+
+        document.getElementById("hours")
+            .textContent = "00";
+
+        document.getElementById("minutes")
+            .textContent = "00";
+
+        document.getElementById("seconds")
+            .textContent = "00";
+
+        return;
+    }
+
 
     const days =
         Math.floor(
@@ -146,90 +355,54 @@ function updateCountdown() {
     const hours =
         Math.floor(
             (difference /
-            (1000 * 60 * 60)) % 24
+                (1000 * 60 * 60)) % 24
         );
 
     const minutes =
         Math.floor(
             (difference /
-            (1000 * 60)) % 60
+                (1000 * 60)) % 60
         );
 
     const seconds =
         Math.floor(
-            (difference / 1000) % 60
+            (difference /
+                1000) % 60
         );
 
+
     document.getElementById("days")
-        .textContent = String(days).padStart(2, "0");
+        .textContent =
+        String(days).padStart(2, "0");
 
     document.getElementById("hours")
-        .textContent = String(hours).padStart(2, "0");
+        .textContent =
+        String(hours).padStart(2, "0");
 
     document.getElementById("minutes")
-        .textContent = String(minutes).padStart(2, "0");
+        .textContent =
+        String(minutes).padStart(2, "0");
 
     document.getElementById("seconds")
-        .textContent = String(seconds).padStart(2, "0");
-
+        .textContent =
+        String(seconds).padStart(2, "0");
 }
+
+
+setInterval(
+    updateCountdown,
+    1000
+);
 
 updateCountdown();
 
-setInterval(updateCountdown, 1000);
 
-
-/* =========================================
-   MUSIC
-========================================= */
-
-const music =
-    document.getElementById("birthdayMusic");
-
-const musicButton =
-    document.getElementById("musicButton");
-
-let musicPlaying = false;
-
-musicButton.addEventListener("click", () => {
-
-    if (!musicPlaying) {
-
-        music.play()
-            .then(() => {
-
-                musicPlaying = true;
-
-                musicButton.textContent = "❚❚";
-
-            })
-            .catch(() => {
-
-                alert(
-                    "Please make sure birthday.mp3 exists inside the music folder."
-                );
-
-            });
-
-    } else {
-
-        music.pause();
-
-        musicPlaying = false;
-
-        musicButton.textContent = "♫";
-
-    }
-
-});
-
-
-/* =========================================
+/* =====================================================
    GALLERY LIGHTBOX
-========================================= */
+===================================================== */
 
-const photoCards =
-    document.querySelectorAll(".photo-card img");
+const photos =
+    document.querySelectorAll(".photo img");
 
 const lightbox =
     document.getElementById("lightbox");
@@ -237,209 +410,64 @@ const lightbox =
 const lightboxImage =
     document.getElementById("lightboxImage");
 
-const closeLightbox =
-    document.getElementById("closeLightbox");
 
-const previousPhoto =
-    document.getElementById("previousPhoto");
+photos.forEach(photo => {
 
-const nextPhoto =
-    document.getElementById("nextPhoto");
+    photo.addEventListener(
+        "click",
+        () => {
 
-const photoCounter =
-    document.getElementById("photoCounter");
+            lightbox.style.display =
+                "flex";
 
-let currentPhoto = 0;
+            lightboxImage.src =
+                photo.src;
+        }
+    );
+
+});
 
 
-function showPhoto(index) {
+function closeLightbox() {
 
-    if (index < 0) {
-        index = photoCards.length - 1;
-    }
-
-    if (index >= photoCards.length) {
-        index = 0;
-    }
-
-    currentPhoto = index;
-
-    lightboxImage.src =
-        photoCards[currentPhoto].src;
-
-    photoCounter.textContent =
-        `${currentPhoto + 1} / ${photoCards.length}`;
-
-    lightbox.classList.add("active");
-
+    lightbox.style.display =
+        "none";
 }
 
 
-photoCards.forEach((photo, index) => {
+/* =====================================================
+   WHATSAPP SHARE
+===================================================== */
 
-    photo.addEventListener("click", () => {
+function shareWhatsApp() {
 
-        showPhoto(index);
+    const message =
+        `🎂 Happy Birthday ${birthdayName}! ❤️
 
-    });
+Wishing you happiness, success,
+love and beautiful memories. ✨
 
-});
+🎉 Have an amazing birthday!
 
+— ${senderName}`;
 
-nextPhoto.addEventListener("click", (event) => {
+    const url =
+        "https://wa.me/?text=" +
+        encodeURIComponent(message);
 
-    event.stopPropagation();
-
-    showPhoto(currentPhoto + 1);
-
-});
-
-
-previousPhoto.addEventListener("click", (event) => {
-
-    event.stopPropagation();
-
-    showPhoto(currentPhoto - 1);
-
-});
-
-
-closeLightbox.addEventListener("click", () => {
-
-    lightbox.classList.remove("active");
-
-});
-
-
-lightbox.addEventListener("click", (event) => {
-
-    if (event.target === lightbox) {
-
-        lightbox.classList.remove("active");
-
-    }
-
-});
-
-
-/* Keyboard navigation */
-
-document.addEventListener("keydown", (event) => {
-
-    if (!lightbox.classList.contains("active")) {
-        return;
-    }
-
-    if (event.key === "Escape") {
-
-        lightbox.classList.remove("active");
-
-    }
-
-    if (event.key === "ArrowRight") {
-
-        showPhoto(currentPhoto + 1);
-
-    }
-
-    if (event.key === "ArrowLeft") {
-
-        showPhoto(currentPhoto - 1);
-
-    }
-
-});
-
-
-/* =========================================
-   CONFETTI + HEART PARTICLES
-========================================= */
-
-function createCelebration() {
-
-    const symbols = [
-        "♥",
-        "♡",
-        "✦",
-        "✧",
-        "•"
-    ];
-
-    for (let i = 0; i < 70; i++) {
-
-        const particle =
-            document.createElement("div");
-
-        particle.className = "particle";
-
-        particle.textContent =
-            symbols[
-                Math.floor(
-                    Math.random() * symbols.length
-                )
-            ];
-
-        particle.style.left =
-            Math.random() * 100 + "vw";
-
-        particle.style.top = "-20px";
-
-        particle.style.fontSize =
-            (8 + Math.random() * 15) + "px";
-
-        particle.style.animationDuration =
-            (3 + Math.random() * 5) + "s";
-
-        particle.style.opacity =
-            .4 + Math.random() * .6;
-
-        document.body.appendChild(particle);
-
-        setTimeout(() => {
-
-            particle.remove();
-
-        }, 9000);
-
-    }
-
+    window.open(
+        url,
+        "_blank"
+    );
 }
 
 
-/* =========================================
-   TOUCH SWIPE FOR PHOTO VIEWER
-========================================= */
+/* =====================================================
+   AUTO CONFETTI
+===================================================== */
 
-let touchStartX = 0;
+setTimeout(() => {
 
-lightbox.addEventListener("touchstart", (event) => {
+    createConfetti();
 
-    touchStartX =
-        event.touches[0].clientX;
-
-});
-
-
-lightbox.addEventListener("touchend", (event) => {
-
-    const touchEndX =
-        event.changedTouches[0].clientX;
-
-    const distance =
-        touchEndX - touchStartX;
-
-    if (Math.abs(distance) < 50) {
-        return;
-    }
-
-    if (distance < 0) {
-
-        showPhoto(currentPhoto + 1);
-
-    } else {
-
-        showPhoto(currentPhoto - 1);
-
-    }
-
-});
+}, 2500);
