@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday ❤️</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= INTRO ================= -->
+
+    <section class="intro" id="intro">
+
+        <div class="intro-glow"></div>
+
+        <p class="intro-small">A little celebration of</p>
+
+        <h1>Someone Special</h1>
+
+        <div class="countdown-number" id="introNumber">3</div>
+
+        <p class="intro-message">
+            Something beautiful is waiting for you...
+        </p>
+
+    </section>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main id="mainContent" class="hidden">
+
+        <!-- MUSIC -->
+
+        <audio id="birthdayMusic" loop>
+            <source src="sbirthday.mp3" type="audio/mpeg">
+        </audio>
+
+        <button class="music-button" id="musicButton" aria-label="Music">
+            ♫
+        </button>
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="label">
+                    A SPECIAL DAY
+                </span>
+
+                <h2>
+                    Happy Birthday,
+                    <span id="typedName"></span>
+                </h2>
+
+                <p>
+                    Today is a little reminder that the world became
+                    a more beautiful place the day you arrived.
+                </p>
+
+                <button class="primary-button" id="startButton">
+                    Begin the Celebration ↓
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MESSAGE ================= -->
+
+        <section class="section message-section" id="message">
+
+            <div class="section-title">
+
+                <span>01 — A MESSAGE</span>
+
+                <h2>From The Heart</h2>
+
+            </div>
+
+            <div class="message-card">
+
+                <div class="heart-symbol">♥</div>
+
+                <p>
+                    Some people make life brighter simply by being
+                    themselves. You are one of those people.
+                </p>
+
+                <p>
+                    On your special day, I hope you receive all the
+                    happiness, kindness and beautiful moments that
+                    you deserve.
+                </p>
+
+                <p>
+                    May every new chapter of your life bring you
+                    closer to your dreams and give you countless
+                    reasons to smile.
+                </p>
+
+                <strong>
+                    Happy Birthday, and keep shining. ❤️
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= BIRTHDAY COUNTDOWN ================= -->
+
+        <section class="section countdown-section">
+
+            <div class="section-title">
+
+                <span>02 — THE SPECIAL DATE</span>
+
+                <h2>Counting The Moments</h2>
+
+                <p>
+                    09 May 1992
+                </p>
+
+            </div>
+
+            <div class="birthday-countdown">
+
+                <div class="time-box">
+                    <strong id="days">00</strong>
+                    <span>Days</span>
+                </div>
+
+                <div class="time-box">
+                    <strong id="hours">00</strong>
+                    <span>Hours</span>
+                </div>
+
+                <div class="time-box">
+                    <strong id="minutes">00</strong>
+                    <span>Minutes</span>
+                </div>
+
+                <div class="time-box">
+                    <strong id="seconds">00</strong>
+                    <span>Seconds</span>
+                </div>
+
+            </div>
+
+            <p class="countdown-note" id="birthdayStatus">
+                Until the next birthday celebration
+            </p>
+
+        </section>
+
+
+        <!-- ================= GALLERY ================= -->
+
+        <section class="section gallery-section">
+
+            <div class="section-title">
+
+                <span>03 — MEMORIES</span>
+
+                <h2>Ten Little Moments</h2>
+
+                <p>
+                    Click any photograph to see it larger.
+                </p>
+
+            </div>
+
+            <div class="gallery">
+
+                <div class="photo-card">
+                    <img src="sphoto1.jpg" alt="Memory 1">
+                </div>
+
+                <div class="photo-card">
+                    <img src="sphoto2.jpg" alt="Memory 2">
+                </div>
+
+                <div class="photo-card">
+                    <img src="sphoto3.jpg" alt="Memory 3">
+                </div>
+
+                <div class="photo-card">
+                    <img src="sphoto4.jpg" alt="Memory 4">
+                </div>
+
+                <div class="photo-card">
+                    <img src="sphoto5.jpg" alt="Memory 5">
+                </div>
+
+                <div class="photo-card">
+                    <img src="sphoto6.jpg" alt="Memory 6">
+                </div>
+
+                <div class="photo-card">
+                    <img src="sphoto7.jpg" alt="Memory 7">
+                </div>
+
+                <div class="photo-card">
+                    <img src="sphoto8.jpg" alt="Memory 8">
+                </div>
+
+                <div class="photo-card">
+                    <img src="sphoto9.jpg" alt="Memory 9">
+                </div>
+
+                <div class="photo-card">
+                    <img src="sphoto10.jpg" alt="Memory 10">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= WISHES ================= -->
+
+        <section class="section wishes-section">
+
+            <div class="section-title">
+
+                <span>04 — BIRTHDAY WISHES</span>
+
+                <h2>A Few Wishes For You</h2>
+
+            </div>
+
+            <div class="wish-grid">
+
+                <article class="wish-card">
+                    <span>01</span>
+                    <h3>Happiness</h3>
+                    <p>
+                        May your days be filled with genuine
+                        smiles and peaceful moments.
+                    </p>
+                </article>
+
+                <article class="wish-card">
+                    <span>02</span>
+                    <h3>Dreams</h3>
+                    <p>
+                        May you have the courage to chase
+                        every dream close to your heart.
+                    </p>
+                </article>
+
+                <article class="wish-card">
+                    <span>03</span>
+                    <h3>Memories</h3>
+                    <p>
+                        May this year give you memories
+                        worth remembering forever.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FINAL ================= -->
+
+        <section class="final-section">
+
+            <div class="final-content">
+
+                <span>ONE LAST WISH</span>
+
+                <h2>
+                    Happy Birthday
+                    <br>
+                    <em id="finalName">Saipallavi</em> ❤️
+                </h2>
+
+                <p>
+                    May your next chapter be peaceful,
+                    exciting and full of beautiful surprises.
+                    Keep smiling, keep dreaming and always
+                    remember how special you are.
+                </p>
+
+                <div class="final-heart">
+                    ♥
+                </div>
+
+                <small>
+                    Made with love.
+                </small>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= PHOTO VIEWER ================= -->
+
+    <div class="lightbox" id="lightbox">
+
+        <button class="lightbox-close" id="closeLightbox">
+            ×
+        </button>
+
+        <button class="lightbox-arrow left" id="previousPhoto">
+            ‹
+        </button>
+
+        <img id="lightboxImage" src="" alt="Enlarged memory">
+
+        <button class="lightbox-arrow right" id="nextPhoto">
+            ›
+        </button>
+
+        <div class="photo-counter" id="photoCounter">
+            1 / 10
+        </div>
+
+    </div>
+
+
+    <!-- PARTICLES -->
+
+    <div id="particles"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
