@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Image2PDF - Image to PDF Converter</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="topbar">
+
+    <button class="menu-btn" id="menuBtn">
+        ☰
+    </button>
+
+    <div class="brand">
+        <div class="brand-icon">I</div>
+        <div>
+            <h2>Image2PDF</h2>
+            <span>Image to PDF Converter</span>
+        </div>
+    </div>
+
+    <button class="search-btn">
+        🔍
+    </button>
+
+</header>
+
+
+<!-- ================= SIDE MENU ================= -->
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="side-header">
+        <div class="logo-large">I</div>
+
+        <div>
+            <h2>Image2PDF</h2>
+            <small>Document Tools</small>
+        </div>
+
+        <button id="closeBtn">×</button>
+    </div>
+
+
+    <div class="premium">
+        <div class="premium-icon">♛</div>
+
+        <div>
+            <strong>Upgrade to Premium</strong>
+            <small>Unlock all features & remove ads</small>
+        </div>
+
+        <span>›</span>
+    </div>
+
+
+    <section class="menu-section">
+
+        <h4>GENERAL</h4>
+
+        <div class="menu-item">
+            <span class="menu-icon green">♡</span>
+            <span>Favourite</span>
+        </div>
+
+        <div class="menu-item">
+            <span class="menu-icon blue">🏷</span>
+            <span>Manage Tags</span>
+        </div>
+
+        <div class="menu-item">
+            <span class="menu-icon gray">♜</span>
+            <span>Trash</span>
+        </div>
+
+        <div class="menu-item">
+            <span class="menu-icon green">⚙</span>
+            <span>Settings</span>
+        </div>
+
+    </section>
+
+
+    <section class="menu-section">
+
+        <h4>TOOLS</h4>
+
+        <div class="menu-item tool-link" data-tool="pdf">
+            <span class="menu-icon orange">⚒</span>
+            <span>PDF Tools</span>
+        </div>
+
+        <div class="menu-item tool-link" data-tool="create">
+            <span class="menu-icon pink">PDF</span>
+            <span>Edit / Create PDF</span>
+        </div>
+
+        <div class="menu-item">
+            <span class="menu-icon orange">✍</span>
+            <span>Signature</span>
+        </div>
+
+        <div class="menu-item">
+            <span class="menu-icon purple">▦</span>
+            <span>QR Scanner</span>
+        </div>
+
+        <div class="menu-item">
+            <span class="menu-icon red">QR</span>
+            <span>QR Generator</span>
+        </div>
+
+    </section>
+
+
+    <section class="menu-section">
+
+        <h4>OTHER</h4>
+
+        <div class="menu-item">
+            <span class="menu-icon green">?</span>
+            <span>Help & FAQ</span>
+        </div>
+
+        <div class="menu-item">
+            <span class="menu-icon dark">●</span>
+            <span>About Image2PDF</span>
+        </div>
+
+        <div class="menu-item">
+            <span class="menu-icon brown">▦</span>
+            <span>Our Other Apps</span>
+        </div>
+
+        <div class="menu-item">
+            <span class="menu-icon blue">✉</span>
+            <span>
+                Contact Us
+                <small>Report a bug</small>
+            </span>
+        </div>
+
+    </section>
+
+
+    <section class="menu-section">
+
+        <h4>MORE</h4>
+
+        <div class="menu-item">
+            <span class="menu-icon purple">●</span>
+            <span>Connect With Us</span>
+        </div>
+
+        <div class="menu-item">
+            <span class="menu-icon orange">★</span>
+            <span>Rate Us</span>
+        </div>
+
+        <div class="menu-item">
+            <span class="menu-icon green">↗</span>
+            <span>Share With Friends</span>
+        </div>
+
+        <div class="menu-item">
+            <span class="menu-icon blue">♙</span>
+            <span>Privacy Policy</span>
+        </div>
+
+    </section>
+
+
+    <div class="follow">
+
+        <h4>Follow Us</h4>
+
+        <div class="socials">
+            <span>f</span>
+            <span>◎</span>
+            <span>▶</span>
+            <span>𝕏</span>
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main>
+
+    <section class="hero">
+
+        <div class="hero-icon">
+            🖼️
+        </div>
+
+        <h1>Image<span>2PDF</span></h1>
+
+        <p>
+            Convert your images into professional PDF documents
+        </p>
+
+    </section>
+
+
+    <!-- Upload Card -->
+
+    <section class="upload-card">
+
+        <div class="upload-icon">
+            📷
+        </div>
+
+        <h2>Add Images</h2>
+
+        <p>
+            Select JPG, JPEG or PNG images
+        </p>
+
+        <div class="upload-buttons">
+
+            <label class="primary-btn">
+                📁 Choose Images
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/png,image/jpeg,image/jpg"
+                    multiple
+                    hidden
+                >
+            </label>
+
+            <button class="camera-btn" id="cameraBtn">
+                📸 Camera
+            </button>
+
+        </div>
+
+        <small>
+            You can select multiple images
+        </small>
+
+    </section>
+
+
+    <!-- Image Preview -->
+
+    <section class="workspace">
+
+        <div class="workspace-header">
+
+            <div>
+                <h2>Your Images</h2>
+                <span id="imageCount">0 images</span>
+            </div>
+
+            <button id="clearBtn" class="clear-btn">
+                Clear All
+            </button>
+
+        </div>
+
+        <div id="preview" class="preview">
+
+            <div class="empty">
+
+                <div>🖼️</div>
+
+                <h3>No images selected</h3>
+
+                <p>
+                    Add images to start creating your PDF
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PDF Settings -->
+
+    <section class="settings-card">
+
+        <h2>PDF Settings</h2>
+
+        <div class="settings-grid">
+
+            <div class="setting">
+
+                <label>Page Size</label>
+
+                <select id="pageSize">
+
+                    <option value="a4">
+                        A4
+                    </option>
+
+                    <option value="letter">
+                        Letter
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="setting">
+
+                <label>Orientation</label>
+
+                <select id="orientation">
+
+                    <option value="portrait">
+                        Portrait
+                    </option>
+
+                    <option value="landscape">
+                        Landscape
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="setting">
+
+                <label>Margin</label>
+
+                <select id="margin">
+
+                    <option value="10">
+                        Normal
+                    </option>
+
+                    <option value="5">
+                        Small
+                    </option>
+
+                    <option value="20">
+                        Large
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="setting">
+
+                <label>Image Quality</label>
+
+                <select id="quality">
+
+                    <option value="0.95">
+                        High
+                    </option>
+
+                    <option value="0.8">
+                        Medium
+                    </option>
+
+                    <option value="0.6">
+                        Small File
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Convert -->
+
+    <section class="convert-area">
+
+        <button id="convertBtn" class="convert-btn">
+
+            <span>📄</span>
+
+            Convert Images to PDF
+
+        </button>
+
+        <p id="status"></p>
+
+    </section>
+
+
+    <!-- Tools -->
+
+    <section class="tools">
+
+        <h2>More Tools</h2>
+
+        <div class="tool-grid">
+
+            <div class="tool-card">
+                <div>📄</div>
+                <h3>PDF Tools</h3>
+                <p>Manage PDF files</p>
+            </div>
+
+            <div class="tool-card">
+                <div>✍️</div>
+                <h3>Signature</h3>
+                <p>Add digital signature</p>
+            </div>
+
+            <div class="tool-card">
+                <div>🔳</div>
+                <h3>QR Scanner</h3>
+                <p>Scan QR codes</p>
+            </div>
+
+            <div class="tool-card">
+                <div>🔲</div>
+                <h3>QR Generator</h3>
+                <p>Create QR codes</p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <strong>Image2PDF</strong>
+
+    <p>
+        Fast • Simple • Secure
+    </p>
+
+    <small>
+        © 2026 Image2PDF. All rights reserved.
+    </small>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
